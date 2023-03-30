@@ -3,8 +3,10 @@ package com.app.agenda_reuniao.models;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Table;
 
+
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,11 +19,18 @@ public class EventoModel implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String local;
+	@NotBlank
 	private String data;
+	@NotBlank
 	private String horaInicial;
+	@NotBlank
 	private String horaFinal;
+	
+	
 	public Long getId() {
 		return id;
 	}
