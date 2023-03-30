@@ -3,11 +3,13 @@ package com.app.agenda_reuniao.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.app.agenda_reuniao.models.EventoModel;
 import com.app.agenda_reuniao.repository.EventoRepository;
 import com.app.agenda_reuniao.service.EventoService;
 
+@Service
 public class EventoServiceImpl implements EventoService {
 	
 	@Autowired
