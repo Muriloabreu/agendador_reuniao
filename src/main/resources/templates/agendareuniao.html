@@ -9,11 +9,11 @@
   <body>
     <nav class="navbar navbar-light bg-light">
 			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Eventos</span>
+			<a href="#" class="btn btn-primary" role="button">New Reserva</a>
 		</nav>
 	<div class="container" style="width: 60%; padding-bottom: 30px;">
-		<h1>Listagem de Reservas </h1>
-		<h3><a href="/cadEvento" class="btn btn-primary" >Cadastrar Nova Reserva</a></h3>
-		
+		<h3>Listagem Reservas de Salas </h3>
+		</br>		
 		<table class="table table-striped">
   <thead >
     <tr>
@@ -22,16 +22,20 @@
       <th scope="col">Data</th>
       <th scope="col">Hora Inícial</th>
       <th scope="col">Hora Final</th>
+      <th scope="col">Opções</th>
     </tr>
   </thead>
   <tbody>
     <tr th:each="evento : ${eventos}">
-      
-      <td><span th:text="${evento.nome}"></span></td>
+      <td ><a th:href="${(#mvc.url('EC#getEventoDetails').arg(0,evento.id)).build()}"><span th:text="${evento.nome}"></span></a></td>
       <td><span th:text="${evento.local}"></span></td>
       <td class="table-warning"><span th:text="${evento.data}"></span></td>
       <td class="table-info"><span th:text="${evento.horaInicial}"></span></td>
       <td class="table-info"><span th:text="${evento.horaFinal}"></span></td>
+      <td>
+      <button><i class="fa-solid fa-trash"></i></button>
+      
+      </td>
     </tr>    
   </tbody>
 </table>		

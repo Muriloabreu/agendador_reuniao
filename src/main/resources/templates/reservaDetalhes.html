@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agendador Reuniões</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Eventos</span>
+			
+		</nav>
+	<div class="container" style="width: 60%; padding-bottom: 30px;">
+		<h3>Detalhes da reserva</h3>
+		<a href="/agendar" class="btn btn-primary" role="button">Voltar listagem</a>
+		</br>
+		</br>
+		<div class="card">
+			<div th:each="evento : ${evento}" >					
+					<p><b>Nome do Evento: </b><span th:text="${evento.nome}"></span></p>
+					<p><b>Local: </b><span th:text="${evento.local}"></span></p>
+					<p><b>Data: </b><span th:text="${evento.data}"></span></p>
+					<p><b>Horário: </b><span th:text="${evento.horaInicial}"></span></p>
+					<p><b>Horário: </b><span th:text="${evento.horaFinal}"></span></p>
+			</div>
+		</div>
+	</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  </body>
+</html>
