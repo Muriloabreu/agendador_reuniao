@@ -2,15 +2,21 @@ package com.app.agenda_reuniao.controller;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.agenda_reuniao.models.EventoModel;
 import com.app.agenda_reuniao.service.EventoService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class EvetoController {
@@ -33,5 +39,19 @@ public class EvetoController {
 		mv.addObject("evento", evento);
 		return mv;
 	} 
-		
+	
+	@RequestMapping(value = "/newReserva", method = RequestMethod.GET)
+	public String getReservaForm() {
+		return "reservaForm";
+	}
+	
+	@RequestMapping(value = "/newReserva", method = RequestMethod.GET)
+	public String save(@Valid EventoModel evento, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
+	 		 return "redirect:/newpost";
+	 	 }	
+		eventoService.save(evento);
+		return "redirect:/agendar";
+	}
 }
