@@ -33,4 +33,14 @@ public class EventoServiceImpl implements EventoService {
 		return eventoRepository.save(evento);
 	}
 
+	@Override
+	public void deletarEvento(EventoModel evento) {
+		
+		 eventoRepository.delete(evento);
+	}
+
+	
+
+	
+
 }
