@@ -41,17 +41,17 @@ public class EvetoController {
 	} 
 	
 	@RequestMapping(value = "/newReserva", method = RequestMethod.GET)
-	public String getReservaForm() {
+	public String form() {
 		return "reservaForm";
 	}
 	
-	@RequestMapping(value = "/newReserva", method = RequestMethod.GET)
+	@RequestMapping(value = "/newReserva", method = RequestMethod.POST)
 	public String save(@Valid EventoModel evento, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
-	 		 return "redirect:/newpost";
+	 		 return "redirect:/newReserva";
 	 	 }	
 		eventoService.save(evento);
-		return "redirect:/agendar";
+		return "redirect:/newReserva";
 	}
 }
