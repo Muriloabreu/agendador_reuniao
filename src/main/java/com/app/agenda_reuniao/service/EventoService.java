@@ -11,5 +11,6 @@ public interface EventoService {
 	List<EventoModel> findAll();
 	EventoModel findById(Long id);
 	EventoModel save(EventoModel evento);
+	void deletarEvento(EventoModel evento);
 
 }
