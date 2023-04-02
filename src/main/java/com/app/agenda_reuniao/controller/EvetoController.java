@@ -58,9 +58,18 @@ public class EvetoController {
 		return "redirect:/agendar";
 	}
 	
+	@RequestMapping("/deletar")
+	public String deletarEvento( Long id) {
+		EventoModel evento = eventoService.findById(id);
+		eventoService.deletarEvento(evento);
+		
+		return "redirect:/agendar";
+	}
+	
 		
 	@RequestMapping(value = "/newReserva", method = RequestMethod.GET)
 	public String form() {
+		
 		return "reservaForm";
 	}
 	
