@@ -26,6 +26,7 @@ A aplicação consiste em cadastrar reuniões ou eventos informando qual é o lo
 - Java
 - Maven
 - Spring Boot
+- thymeleaf
 ## Front end
 - HTML / CSS / 
 - BootStrap
