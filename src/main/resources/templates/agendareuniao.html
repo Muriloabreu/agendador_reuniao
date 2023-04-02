@@ -11,7 +11,7 @@
 			<span class="navbar-brand mb-0 h1" style="font-weight: bold;">Eventos</span>
 			<a href="/newReserva" class="btn btn-primary" role="button">New Reserva</a>
 		</nav>
-	<div class="container" style="width: 60%; padding-bottom: 30px;">
+	<div class="container" style="width: 70%; padding-bottom: 30px;">
 		<h3>Listagem Reservas de Salas </h3>
 		</br>		
 		<table class="table table-striped">
@@ -32,9 +32,9 @@
       <td class="table-warning"><span th:text="${evento.data}"></span></td>
       <td class="table-info"><span th:text="${evento.horaInicial}"></span></td>
       <td class="table-info"><span th:text="${evento.horaFinal}"></span></td>
-      <td>
-      <a href="#" class="btn btn-warning">Editar</a>      
-      <a href="#" class="btn btn-danger">Excluir</a>
+      <td class="table-info" style="width: 150px">
+      <a class="btn btn-warning btn-sm" th:href="${(#mvc.url('EC#editEvento').arg(0,evento.id)).build()}">Editar</a>      
+      <a href="#" class="btn btn-danger btn-sm" >Excluir</a>
       </td>
     </tr>    
   </tbody>

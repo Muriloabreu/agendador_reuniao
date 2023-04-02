@@ -40,6 +40,25 @@ public class EvetoController {
 		return mv;
 	} 
 	
+	@RequestMapping(value = "/agendar{id}", method = RequestMethod.GET)
+	public ModelAndView editEvento(@PathVariable("id") Long id) {
+		ModelAndView mv = new ModelAndView("editForm"); /*Nome da Pagina html*/
+		EventoModel evento = eventoService.findById(id);
+		mv.addObject("evento", evento);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/agendar{id}", method = RequestMethod.POST)
+	public String update(@Valid EventoModel evento, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
+	 		 return "redirect:/newReserva";
+	 	 }	
+		eventoService.save(evento);
+		return "redirect:/agendar";
+	}
+	
+		
 	@RequestMapping(value = "/newReserva", method = RequestMethod.GET)
 	public String form() {
 		return "reservaForm";
@@ -52,6 +71,6 @@ public class EvetoController {
 	 		 return "redirect:/newReserva";
 	 	 }	
 		eventoService.save(evento);
-		return "redirect:/newReserva";
+		return "redirect:/agendar";
 	}
 }
