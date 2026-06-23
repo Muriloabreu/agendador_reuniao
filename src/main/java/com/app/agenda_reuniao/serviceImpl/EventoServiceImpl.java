@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.agenda_reuniao.models.EventoModel;
+import com.app.agenda_reuniao.models.Reserva;
 import com.app.agenda_reuniao.repository.EventoRepository;
 import com.app.agenda_reuniao.service.EventoService;
 
@@ -16,25 +16,25 @@ public class EventoServiceImpl implements EventoService {
 	EventoRepository eventoRepository;
 
 	@Override
-	public List<EventoModel> findAll() {
+	public List<Reserva> findAll() {
 		
 		return eventoRepository.findAll();
 	}
 
 	@Override
-	public EventoModel findById(Long id) {
+	public Reserva findById(Long id) {
 		
 		return eventoRepository.findById(id).get();
 	}
 
 	@Override
-	public EventoModel save(EventoModel evento) {
+	public Reserva save(Reserva evento) {
 		
 		return eventoRepository.save(evento);
 	}
 
 	@Override
-	public void deletarEvento(EventoModel evento) {
+	public void deletarEvento(Reserva evento) {
 		
 		 eventoRepository.delete(evento);
 	}

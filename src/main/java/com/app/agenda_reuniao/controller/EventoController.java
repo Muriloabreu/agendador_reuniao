@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.app.agenda_reuniao.models.EventoModel;
+import com.app.agenda_reuniao.models.Reserva;
 import com.app.agenda_reuniao.service.EventoService;
 
 import jakarta.validation.Valid;
@@ -31,7 +31,7 @@ public class EventoController {
 	@RequestMapping(value = "/agendar", method = RequestMethod.GET)
 	public ModelAndView getEventos() {
 		ModelAndView mv = new ModelAndView("agendareuniao"); /*Nome da Pagina html*/
-		List<EventoModel> eventos = eventoService.findAll();
+		List<Reserva> eventos = eventoService.findAll();
 		mv.addObject("eventos", eventos);
 		return mv;
 	}
@@ -39,7 +39,7 @@ public class EventoController {
 	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.GET)
 	public ModelAndView getEventoDetails(@PathVariable("id") Long id) {
 		ModelAndView mv = new ModelAndView("reservaDetalhes"); /*Nome da Pagina html*/
-		EventoModel evento = eventoService.findById(id);
+		Reserva evento = eventoService.findById(id);
 		mv.addObject("evento", evento);
 		return mv;
 	} 
@@ -47,13 +47,13 @@ public class EventoController {
 	@RequestMapping(value = "/agendar{id}", method = RequestMethod.GET)
 	public ModelAndView editEvento(@PathVariable("id") Long id) {
 		ModelAndView mv = new ModelAndView("editForm"); /*Nome da Pagina html*/
-		EventoModel evento = eventoService.findById(id);
+		Reserva evento = eventoService.findById(id);
 		mv.addObject("evento", evento);
 		return mv;
 	}
 	
 	@RequestMapping(value = "/agendar{id}", method = RequestMethod.POST)
-	public String update(@Valid EventoModel evento, BindingResult result, RedirectAttributes attributes) {
+	public String update(@Valid Reserva evento, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
 	 		 return "redirect:/newReserva";
@@ -64,7 +64,7 @@ public class EventoController {
 	
 	@RequestMapping("/deletar")
 	public String deletarEvento( Long id) {
-		EventoModel evento = eventoService.findById(id);
+		Reserva evento = eventoService.findById(id);
 		eventoService.deletarEvento(evento);
 		
 		return "redirect:/agendar";
@@ -78,7 +78,7 @@ public class EventoController {
 	}
 	
 	@RequestMapping(value = "/newReserva", method = RequestMethod.POST)
-	public String save(@Valid EventoModel evento, BindingResult result, RedirectAttributes attributes) {
+	public String save(@Valid Reserva evento, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
 	 		 return "redirect:/newReserva";

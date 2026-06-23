@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.app.agenda_reuniao.models.EventoModel;
+import com.app.agenda_reuniao.models.Reserva;
 import com.app.agenda_reuniao.repository.EventoRepository;
 
 import jakarta.annotation.PostConstruct;
@@ -23,17 +23,17 @@ public class DummyData {
 
     //@PostConstruct
     public void saveEvento(){
-
-        List<EventoModel> eventoList = new ArrayList<>();
+/*
+        List<Reserva> eventoList = new ArrayList<>();
         
-        EventoModel evento1 = new EventoModel();
+        Reserva evento1 = new Reserva();
         evento1.setNome("Reunião Diária");
         evento1.setLocal("Sala de Reunião 01");
         evento1.setData("30/03/2023");
         evento1.setHoraInicial("08:00");
         evento1.setHoraFinal("09:00");
         
-        EventoModel evento2 = new EventoModel();
+        Reserva evento2 = new Reserva();
         evento2.setNome("Reunião de Resultados");
         evento2.setLocal("Sala de Reunião 03");
         evento2.setData("30/03/2023");
@@ -44,10 +44,11 @@ public class DummyData {
         eventoList.add(evento1);
         eventoList.add(evento2);
 
-        for(EventoModel evento: eventoList){
-        	EventoModel eventoSaved = eventoRepository.save(evento);
+        for(Reserva evento: eventoList){
+        	Reserva eventoSaved = eventoRepository.save(evento);
             System.out.println(eventoSaved.getId());
         }
     }
-
+*/
+}
 }
