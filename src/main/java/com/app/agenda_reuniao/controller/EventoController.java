@@ -19,10 +19,14 @@ import com.app.agenda_reuniao.service.EventoService;
 import jakarta.validation.Valid;
 
 @Controller
-public class EvetoController {
+public class EventoController {
 	
-	@Autowired
-	EventoService eventoService;
+	
+	private final EventoService eventoService;	
+
+	public EventoController(EventoService eventoService) {
+		this.eventoService = eventoService;
+	}
 
 	@RequestMapping(value = "/agendar", method = RequestMethod.GET)
 	public ModelAndView getEventos() {
