@@ -8,16 +8,27 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.app.agenda_reuniao.Dto.ErroResponse;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 	
+	//tratamento informa hora, tipo, status http
 	@ExceptionHandler(ReservaNaoEncontradaException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String tratarReservaNaoEncontrada(
-            ReservaNaoEncontradaException ex) {
+	public ResponseEntity<ErroResponse>
+	tratarReservaNaoEncontrada(
+	        ReservaNaoEncontradaException ex) {
 
-        return ex.getMessage();
-    }
+	    ErroResponse erro =
+	            new ErroResponse(
+	                    LocalDateTime.now(),
+	                    404,
+	                    ex.getMessage());
+
+	    return ResponseEntity
+	            .status(HttpStatus.NOT_FOUND)
+	            .body(erro);
+	}
 
     @ExceptionHandler(ConflitoHorarioException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
