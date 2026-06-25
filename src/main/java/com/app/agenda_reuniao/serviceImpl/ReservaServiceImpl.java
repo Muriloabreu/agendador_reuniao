@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.agenda_reuniao.exception.ReservaNaoEncontradaException;
 import com.app.agenda_reuniao.models.Reserva;
 import com.app.agenda_reuniao.repository.ReservaRepository;
 import com.app.agenda_reuniao.service.ReservaService;
@@ -22,10 +23,9 @@ public class ReservaServiceImpl implements ReservaService {
 	}
 
 	public Reserva buscar(Long id) {
-		//com o RuntimeException podemos 
 	    return reservaRepository.findById(id)
 	            .orElseThrow(() ->
-	                    new RuntimeException("Reserva não encontrada"));
+	                    new ReservaNaoEncontradaException(id));
 	}
 
 	@Override
