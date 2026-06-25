@@ -1,4 +1,4 @@
-package com.app.agenda_reuniao.Dto;
+package com.app.agenda_reuniao.dto;
 
 import java.time.LocalDateTime;
 
