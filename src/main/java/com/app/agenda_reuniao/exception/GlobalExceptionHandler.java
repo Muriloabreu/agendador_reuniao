@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.app.agenda_reuniao.Dto.ErroResponse;
+
+import com.app.agenda_reuniao.dto.ErroResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -30,13 +30,20 @@ public class GlobalExceptionHandler {
 	            .body(erro);
 	}
 
-    @ExceptionHandler(ConflitoHorarioException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String tratarConflito(
-            ConflitoHorarioException ex) {
+	@ExceptionHandler(ConflitoHorarioException.class)
+	public ResponseEntity<ErroResponse>
+	tratarConflito(ConflitoHorarioException ex) {
 
-        return ex.getMessage();
-    }
+	    ErroResponse erro =
+	            new ErroResponse(
+	                    LocalDateTime.now(),
+	                    400,
+	                    ex.getMessage());
+
+	    return ResponseEntity
+	            .status(HttpStatus.BAD_REQUEST)
+	            .body(erro);
+	}
     
     
 
