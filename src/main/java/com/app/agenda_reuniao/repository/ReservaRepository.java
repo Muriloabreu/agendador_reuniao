@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.app.agenda_reuniao.models.Reserva;
 
-public interface EventoRepository extends JpaRepository<Reserva, Long>{
+public interface ReservaRepository extends JpaRepository<Reserva, Long>{
 
 }

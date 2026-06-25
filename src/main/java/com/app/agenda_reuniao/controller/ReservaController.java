@@ -14,17 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.agenda_reuniao.models.Reserva;
-import com.app.agenda_reuniao.service.EventoService;
+import com.app.agenda_reuniao.service.ReservaService;
 
 import jakarta.validation.Valid;
 
 @Controller
-public class EventoController {
+public class ReservaController {
 	
 	
-	private final EventoService eventoService;	
+	private final ReservaService eventoService;	
 
-	public EventoController(EventoService eventoService) {
+	public ReservaController(ReservaService eventoService) {
 		this.eventoService = eventoService;
 	}
 
@@ -44,7 +44,7 @@ public class EventoController {
 		return mv;
 	} 
 	
-	@RequestMapping(value = "/agendar{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.GET)
 	public ModelAndView editEvento(@PathVariable("id") Long id) {
 		ModelAndView mv = new ModelAndView("editForm"); /*Nome da Pagina html*/
 		Reserva evento = eventoService.findById(id);
@@ -52,7 +52,7 @@ public class EventoController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/agendar{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.POST)
 	public String update(@Valid Reserva evento, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");

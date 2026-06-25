@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.agenda_reuniao.models.Reserva;
-import com.app.agenda_reuniao.repository.EventoRepository;
+import com.app.agenda_reuniao.repository.ReservaRepository;
 
 import jakarta.annotation.PostConstruct;
 
@@ -19,7 +19,7 @@ import jakarta.annotation.PostConstruct;
 public class DummyData {
 	
 	@Autowired
-    EventoRepository eventoRepository;
+    ReservaRepository eventoRepository;
 
     //@PostConstruct
     public void saveEvento(){

@@ -6,7 +6,7 @@ import java.util.List;
 import com.app.agenda_reuniao.models.Reserva;
 
 
-public interface EventoService {
+public interface ReservaService {
 	
 	List<Reserva> findAll();
 	Reserva findById(Long id);
