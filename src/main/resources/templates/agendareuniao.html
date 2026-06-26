@@ -43,11 +43,11 @@
             <td th:text="${evento.status}"></td>
 
             <td>
-                <a class="btn btn-warning btn-sm"
-                   th:href="@{/agendar/{id}/editar(id=${evento.id})}">
-                    Editar
-                </a>
-
+				<a class="btn btn-warning btn-sm"
+				   th:href="@{/agendar/{id}/editar(id=${evento.id})}">
+				    Editar
+				</a>
+				
                 <a class="btn btn-danger btn-sm"
                    th:href="@{/deletar(id=${evento.id})}">
                     Excluir
