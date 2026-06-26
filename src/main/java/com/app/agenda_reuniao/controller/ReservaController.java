@@ -37,15 +37,15 @@ public class ReservaController {
 	}
 	
 	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.GET)
-	public ModelAndView getEventoDetails(@PathVariable("id") Long id) {
+	public ModelAndView getReservaDetails(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("reservaDetalhes"); /*Nome da Pagina html*/
 		Reserva evento = eventoService.findById(id);
 		mv.addObject("evento", evento);
 		return mv;
 	} 
 	
-	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.GET)
-	public ModelAndView editEvento(@PathVariable("id") Long id) {
+	@RequestMapping(value = "/agendar/{id}/editar", method = RequestMethod.GET)
+	public ModelAndView editReserva(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("editForm"); /*Nome da Pagina html*/
 		Reserva evento = eventoService.findById(id);
 		mv.addObject("evento", evento);
