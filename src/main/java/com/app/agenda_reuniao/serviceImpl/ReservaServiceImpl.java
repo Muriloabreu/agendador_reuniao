@@ -22,12 +22,7 @@ public class ReservaServiceImpl implements ReservaService {
 		return reservaRepository.findAll();
 	}
 
-	public Reserva buscar(Long id) {
-	    return reservaRepository.findById(id)
-	            .orElseThrow(() ->
-	                    new ReservaNaoEncontradaException(id));
-	}
-
+	
 	@Override
 	public Reserva save(Reserva evento) {
 		
@@ -42,8 +37,8 @@ public class ReservaServiceImpl implements ReservaService {
 
 	@Override
 	public Reserva findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return reservaRepository.findById(id)
+	            .orElseThrow(() -> new ReservaNaoEncontradaException(id));
 	}
 
 	
