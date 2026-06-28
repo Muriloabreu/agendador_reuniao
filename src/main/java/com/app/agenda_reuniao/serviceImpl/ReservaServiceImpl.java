@@ -2,7 +2,6 @@ package com.app.agenda_reuniao.serviceImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.agenda_reuniao.exception.ReservaNaoEncontradaException;
@@ -13,8 +12,12 @@ import com.app.agenda_reuniao.service.ReservaService;
 @Service
 public class ReservaServiceImpl implements ReservaService {
 	
-	@Autowired
-	ReservaRepository reservaRepository;
+	
+	private final ReservaRepository reservaRepository;
+	
+	public ReservaServiceImpl(ReservaRepository reservaRepository) {
+	    this.reservaRepository = reservaRepository;
+	}
 
 	@Override
 	public List<Reserva> findAll() {
@@ -30,9 +33,9 @@ public class ReservaServiceImpl implements ReservaService {
 	}
 
 	@Override
-	public void deletarEvento(Reserva evento) {
+	public void deletarReserva(Reserva reserva) {
 		
-		reservaRepository.delete(evento);
+		reservaRepository.delete(reserva);
 	}
 
 	@Override

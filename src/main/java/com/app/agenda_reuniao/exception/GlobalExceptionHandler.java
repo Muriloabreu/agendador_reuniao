@@ -44,6 +44,21 @@ public class GlobalExceptionHandler {
 	            .status(HttpStatus.BAD_REQUEST)
 	            .body(erro);
 	}
+	
+	@ExceptionHandler(SalaNaoEncontradaException.class)
+	public ResponseEntity<ErroResponse>
+	tratarSalaNaoEncontrada(SalaNaoEncontradaException ex) {
+
+	    ErroResponse erro =
+	            new ErroResponse(
+	                    LocalDateTime.now(),
+	                    404,
+	                    ex.getMessage());
+
+	    return ResponseEntity
+	            .status(HttpStatus.NOT_FOUND)
+	            .body(erro);
+	}
     
     
 

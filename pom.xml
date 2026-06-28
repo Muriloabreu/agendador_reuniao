@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.app</groupId>
-	<artifactId>agenda_reuniao</artifactId>
+	<artifactId>sistema-reserva-salas</artifactId>
+	<name>Sistema Reserva de Salas</name>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>agenda_reuniao</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

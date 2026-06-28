@@ -2,9 +2,14 @@ package com.app.agenda_reuniao.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+import com.app.agenda_reuniao.exception.SalaNaoEncontradaException;
 import com.app.agenda_reuniao.models.Sala;
+import com.app.agenda_reuniao.repository.SalaRepository;
 import com.app.agenda_reuniao.service.SalaService;
 
+@Service
 public class SalaServiceImpl implements SalaService{
 
 	private final SalaRepository salaRepository;

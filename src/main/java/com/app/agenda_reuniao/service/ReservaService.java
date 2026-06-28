@@ -10,7 +10,7 @@ public interface ReservaService {
 	
 	List<Reserva> findAll();
 	Reserva findById(Long id);
-	Reserva save(Reserva evento);
-	void deletarEvento(Reserva evento);
+	Reserva save(Reserva reserva);
+	void deletarReserva(Reserva reserva);
 
 }

@@ -22,50 +22,50 @@ import jakarta.validation.Valid;
 public class ReservaController {
 	
 	
-	private final ReservaService eventoService;	
+	private final ReservaService reservaService;
 
-	public ReservaController(ReservaService eventoService) {
-		this.eventoService = eventoService;
+	public ReservaController(ReservaService reservaService) {
+	    this.reservaService = reservaService;
 	}
 
 	@RequestMapping(value = "/agendar", method = RequestMethod.GET)
-	public ModelAndView getEventos() {
+	public ModelAndView getReservas() {
 		ModelAndView mv = new ModelAndView("agendareuniao"); /*Nome da Pagina html*/
-		List<Reserva> eventos = eventoService.findAll();
-		mv.addObject("eventos", eventos);
+		List<Reserva> reservas = reservaService.findAll();
+		mv.addObject("reservas", reservas);
 		return mv;
 	}
 	
 	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.GET)
 	public ModelAndView getReservaDetails(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("reservaDetalhes"); /*Nome da Pagina html*/
-		Reserva evento = eventoService.findById(id);
-		mv.addObject("evento", evento);
+		Reserva reserva = reservaService.findById(id);
+		mv.addObject("reserva", reserva);
 		return mv;
 	} 
 	
 	@RequestMapping(value = "/agendar/{id}/editar", method = RequestMethod.GET)
 	public ModelAndView editReserva(@PathVariable Long id) {
 		ModelAndView mv = new ModelAndView("editForm"); /*Nome da Pagina html*/
-		Reserva evento = eventoService.findById(id);
-		mv.addObject("evento", evento);
+		Reserva reserva = reservaService.findById(id);
+		mv.addObject("reserva", reserva);
 		return mv;
 	}
 	
 	@RequestMapping(value = "/agendar/{id}", method = RequestMethod.POST)
-	public String update(@Valid Reserva evento, BindingResult result, RedirectAttributes attributes) {
+	public String update(@Valid Reserva reserva, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
 	 		 return "redirect:/newReserva";
 	 	 }	
-		eventoService.save(evento);
+		reservaService.save(reserva);
 		return "redirect:/agendar";
 	}
 	
 	@RequestMapping("/deletar")
-	public String deletarEvento( Long id) {
-		Reserva evento = eventoService.findById(id);
-		eventoService.deletarEvento(evento);
+	public String deletarReserva( Long id) {
+		Reserva reserva = reservaService.findById(id);
+		reservaService.deletarReserva(reserva);
 		
 		return "redirect:/agendar";
 	}
@@ -78,12 +78,12 @@ public class ReservaController {
 	}
 	
 	@RequestMapping(value = "/newReserva", method = RequestMethod.POST)
-	public String save(@Valid Reserva evento, BindingResult result, RedirectAttributes attributes) {
+	public String save(@Valid Reserva reserva, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 	 		 attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
 	 		 return "redirect:/newReserva";
 	 	 }	
-		eventoService.save(evento);
+		reservaService.save(reserva);
 		return "redirect:/agendar";
 	}
 }
