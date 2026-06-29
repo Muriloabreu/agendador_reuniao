@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.app.agenda_reuniao.exception.ReservaNaoEncontradaException;
+import com.app.agenda_reuniao.exception.ConflitoHorarioException;
 import com.app.agenda_reuniao.models.Reserva;
 import com.app.agenda_reuniao.repository.ReservaRepository;
 import com.app.agenda_reuniao.service.ReservaService;
@@ -27,9 +28,40 @@ public class ReservaServiceImpl implements ReservaService {
 
 	
 	@Override
-	public Reserva save(Reserva evento) {
+	public Reserva save(Reserva reserva) {
 		
-		return reservaRepository.save(evento);
+		validarConflitoHorario(reserva);
+		
+		return reservaRepository.save(reserva);
+	}
+	
+	private void validarConflitoHorario(Reserva novaReserva) {
+
+	    List<Reserva> reservasExistentes =
+	            reservaRepository.findBySalaAndData(
+	                    novaReserva.getSala(),
+	                    novaReserva.getData()
+	            );
+
+	    for (Reserva reservaExistente : reservasExistentes) {
+
+	        boolean mesmoRegistro =
+	                novaReserva.getId() != null &&
+	                novaReserva.getId().equals(reservaExistente.getId());
+
+	        if (mesmoRegistro) {
+	            continue;
+	        }
+
+	        boolean existeConflito =
+	                novaReserva.getHoraInicio().isBefore(reservaExistente.getHoraFim())
+	                &&
+	                novaReserva.getHoraFim().isAfter(reservaExistente.getHoraInicio());
+
+	        if (existeConflito) {
+	            throw new ConflitoHorarioException();
+	        }
+	    }
 	}
 
 	@Override

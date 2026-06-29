@@ -45,6 +45,72 @@ public class Reserva implements Serializable{
     @Enumerated(EnumType.STRING)
     private StatusReserva status;
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public LocalTime getHoraInicio() {
+		return horaInicio;
+	}
+
+	public LocalTime getHoraFim() {
+		return horaFim;
+	}
+
+	public Sala getSala() {
+		return sala;
+	}
+
+	public StatusReserva getStatus() {
+		return status;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public void setHoraInicio(LocalTime horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public void setHoraFim(LocalTime horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public void setStatus(StatusReserva status) {
+		this.status = status;
+	}
+
+    
+    
 	
 	
 		
